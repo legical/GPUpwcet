@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <random>
-#include <pthread.h>
+#include <thread>
 
 #define ARRAY_SIZE (1 << 20)
 #define BLOCK_NUM 1
@@ -23,7 +23,7 @@ __global__ void vectorAdd(double* a, double* b, double* c, int size) {
 }
 
 // 线程函数
-void* threadFunc(void* arg) {
+void threadFunc(void* arg) {
     // 在每个线程中执行CUDA kernel
     double* hostA, * hostB, * hostC;
     double* devA, * devB, * devC;
@@ -72,20 +72,20 @@ void* threadFunc(void* arg) {
 int main() {
     // 初始化CUDA设备
     cudaSetDevice(0);
+    const int CONTEXT_POOL_SIZE = 3
 
-    // 创建三个线程
-    pthread_t threads[3];
-    for (int i = 0; i < 3; ++i) {
-        pthread_create(&threads[i], NULL, threadFunc, NULL);
+    // 创建线程池
+    std::thread threads[CONTEXT_POOL_SIZE];
+
+    for (int i = 0; i < CONTEXT_POOL_SIZE; i++) {
+        threads[i] = std::thread([i]() {
+            threadFunc();
+        });
     }
 
     // 等待所有线程完成
-    for (int i = 0; i < 3; ++i) {
-        pthread_join(threads[i], NULL);
+    for (int i = 0; i < CONTEXT_POOL_SIZE; i++) {
+        threads[i].join();
     }
-
-    // 销毁线程
-    pthread_exit(NULL);
-
     return 0;
 }

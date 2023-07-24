@@ -6,7 +6,7 @@ proj_dir=$(pwd)
 root_dir=$proj_dir/..
 
 # 编译 CUDA 程序
-nvcc vectoradd.cu -o vectoradd -lpthread
+nvcc vectoradd.cu -o vectoradd
 
 echo "执行single测试..."
 start_time=$(date +%s.%N)

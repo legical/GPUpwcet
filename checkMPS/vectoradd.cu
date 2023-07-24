@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <random>
+#include <pthread.h>
 
 #define ARRAY_SIZE (1 << 24)
 #define BLOCK_NUM 1

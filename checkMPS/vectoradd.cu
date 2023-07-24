@@ -5,7 +5,7 @@
 #include <random>
 #include <pthread.h>
 
-#define ARRAY_SIZE (1 << 24)
+#define ARRAY_SIZE (1 << 20)
 #define BLOCK_NUM 1
 #define THREAD_PER_BLOCK 32
 

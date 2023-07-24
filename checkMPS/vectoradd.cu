@@ -23,7 +23,7 @@ __global__ void vectorAdd(double* a, double* b, double* c, int size) {
 }
 
 // 线程函数
-void threadFunc(void* arg) {
+void threadFunc(void) {
     // 在每个线程中执行CUDA kernel
     double* hostA, * hostB, * hostC;
     double* devA, * devB, * devC;
@@ -72,7 +72,7 @@ void threadFunc(void* arg) {
 int main() {
     // 初始化CUDA设备
     cudaSetDevice(0);
-    const int CONTEXT_POOL_SIZE = 3
+    const int CONTEXT_POOL_SIZE = 3;
 
     // 创建线程池
     std::thread threads[CONTEXT_POOL_SIZE];

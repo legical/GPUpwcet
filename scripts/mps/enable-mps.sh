@@ -12,7 +12,6 @@ nvidia-smi -i 0 -c EXCLUSIVE_PROCESS
 nvidia-cuda-mps-control -d
 
 # 检查MPS是否已启用
-ps -ef | grep mps 
 count=$(ps -ef | grep nvidia-cuda-mps-control | wc -l)
 
 # 如果行数大于等于2，则说明MPS成功启动

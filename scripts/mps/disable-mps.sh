@@ -11,8 +11,7 @@ echo quit | nvidia-cuda-mps-control
 nvidia-smi -i 0 -c DEFAULT
 
 # 检查MPS是否已禁用
-ps -ef | grep nvidia-cuda-mps-control 
-count=$(ps -ef | grep mps | wc -l)
+count=$(ps -ef | grep nvidia-cuda-mps-control | wc -l)
 
 # 如果行数等于1，则说明MPS成功禁用
 if [ $count -eq 1 ]; then

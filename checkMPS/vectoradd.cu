@@ -21,7 +21,9 @@ __global__ void vectorAdd(double* a, double* b, double* c, int size) {
     }
 }
 
-int main() {
+// 线程函数
+void* threadFunc(void* arg) {
+    // 在每个线程中执行CUDA kernel
     double* hostA, * hostB, * hostC;
     double* devA, * devB, * devC;
 
@@ -63,6 +65,25 @@ int main() {
     cudaFree(devA);
     cudaFree(devB);
     cudaFree(devC);
+}
+
+int main() {
+    // 初始化CUDA设备
+    cudaSetDevice(0);
+
+    // 创建三个线程
+    pthread_t threads[3];
+    for (int i = 0; i < 3; ++i) {
+        pthread_create(&threads[i], NULL, threadFunc, NULL);
+    }
+
+    // 等待所有线程完成
+    for (int i = 0; i < 3; ++i) {
+        pthread_join(threads[i], NULL);
+    }
+
+    // 销毁线程
+    pthread_exit(NULL);
 
     return 0;
 }

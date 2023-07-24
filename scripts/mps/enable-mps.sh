@@ -12,9 +12,11 @@ nvidia-smi -i 0 -c EXCLUSIVE_PROCESS
 nvidia-cuda-mps-control -d
 
 # 检查MPS是否已启用
-mps_status=$(nvidia-smi -q -i 0 -d UTILIZATION | grep "MPS" | grep "Enabled")
+ps -ef | grep mps 
+count=$(ps -ef | grep nvidia-cuda-mps-control | wc -l)
 
-if [[ -n $mps_status ]]; then
+# 如果行数大于等于2，则说明MPS成功启动
+if [ $count -ge 2 ]; then
     echo "NVIDIA MPS已成功启用。"
 else
     echo "启用NVIDIA MPS时出现问题，请检查相关配置。"

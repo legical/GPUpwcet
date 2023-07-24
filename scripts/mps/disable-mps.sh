@@ -11,9 +11,11 @@ echo quit | nvidia-cuda-mps-control
 nvidia-smi -i 0 -c DEFAULT
 
 # 检查MPS是否已禁用
-mps_status=$(nvidia-smi -q -i 0 -d UTILIZATION | grep "MPS" | grep "Enabled")
+ps -ef | grep nvidia-cuda-mps-control 
+count=$(ps -ef | grep mps | wc -l)
 
-if [[ -z $mps_status ]]; then
+# 如果行数等于1，则说明MPS成功禁用
+if [ $count -eq 1 ]; then
     echo "NVIDIA MPS已成功禁用。"
 else
     echo "禁用NVIDIA MPS时出现问题，请检查相关配置。"

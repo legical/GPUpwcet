@@ -5,8 +5,8 @@
 #include <random>
 
 #define BLOCK_SIZE 32
-#define VECTOR_SIZE (1 << 26)
-#define OPERATIONS_PER_THREAD 1000
+#define VECTOR_SIZE (1 << 24)
+#define OPERATIONS_PER_THREAD 512
 
 __global__ void vectorAdd(double* a, double* b, double* c, int size) {
     int tid = blockIdx.x * blockDim.x + threadIdx.x;

@@ -1,8 +1,9 @@
 #!/bin/bash
 
+source ~/.bashrc
 # 获取当前目录和主目录（上一级目录）
 proj_dir=$(pwd)
-root_dir=$(dirname "$current_dir")
+root_dir=$proj_dir/..
 
 # 编译 CUDA 程序
 nvcc vectoradd.cu -o vectoradd -lpthread

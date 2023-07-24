@@ -4,8 +4,8 @@
 #include <ctime>
 #include <random>
 
-#define ARRAY_SIZE (1 << 18)
-#define BLOCK_NUM 2
+#define ARRAY_SIZE (1 << 24)
+#define BLOCK_NUM 1
 #define THREAD_PER_BLOCK 32
 
 __global__ void vectorAdd(double* a, double* b, double* c, int size) {
@@ -36,9 +36,10 @@ void* threadFunc(void* arg) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dis(0.0, 13.0);
+    double num1 = dis(gen), num2 = dis(gen);
     for (int i = 0; i < ARRAY_SIZE; i++) {
-        hostA[i] = dis(gen);
-        hostB[i] = dis(gen);
+        hostA[i] = num1;
+        hostB[i] = num2;
     }
 
     // 分配设备内存

@@ -17,6 +17,7 @@ execution_time_a=$(echo "$end_time - $start_time" | bc)
 echo "未启用 MPS 的测试执行时间：$execution_time_a 秒"
 
 # 启用 MPS
+chmod +x $root_dir/scripts/mps/*.sh
 sudo $root_dir/scripts/mps/enable-mps.sh
 
 # 执行已启用 MPS 的测试

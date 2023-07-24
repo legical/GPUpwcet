@@ -18,7 +18,7 @@ echo "single测试时间：$execution_time_a 秒"
 # 执行未启用 MPS 的测试
 echo "执行未启用 MPS 的测试..."
 start_time=$(date +%s.%N)
-./vectoradd && ./vectoradd
+./vectoradd
 end_time=$(date +%s.%N)
 execution_time_a=$(echo "$end_time - $start_time" | bc)
 echo "未启用 MPS 的测试执行时间：$execution_time_a 秒"
@@ -31,7 +31,7 @@ sudo $root_dir/scripts/mps/enable-mps.sh
 cd $proj_dir
 echo "执行已启用 MPS 的测试..."
 start_time=$(date +%s.%N)
-./vectoradd && ./vectoradd
+./vectoradd
 end_time=$(date +%s.%N)
 execution_time_b=$(echo "$end_time - $start_time" | bc)
 echo "已启用 MPS 的测试执行时间：$execution_time_b 秒"

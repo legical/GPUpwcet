@@ -5,7 +5,7 @@
 #include <random>
 #include <thread>
 
-#define ARRAY_SIZE (1 << 20)
+#define ARRAY_SIZE (1 << 26)
 #define BLOCK_NUM 1
 #define THREAD_PER_BLOCK 32
 

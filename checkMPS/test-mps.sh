@@ -38,6 +38,9 @@ end_time=$(date +%s.%N)
 execution_time_b=$(echo "$end_time - $start_time" | bc)
 echo "已启用 MPS 的测试执行时间：$execution_time_b 秒"
 
+# 清理编译文件
+rm -rf vectoradd
+
 # 比较执行时间
 echo ""
 time_difference=$(echo "$execution_time_a - $execution_time_b" | bc)

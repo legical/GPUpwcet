@@ -16,12 +16,16 @@ generate_some_output_and_sleep() {
 
 
 main() {
+    # Make sure that the progress bar is cleaned up when user presses ctrl+c
+    enable_trapping
+    # Create progress bar
+    setup_scroll_area
     for i in {1..99}
     do
-        del_this_line
         generate_some_output_and_sleep
-        progress_bar $i 100
+        draw_progress_bar $i 100
     done
+    destroy_scroll_area
 }
 
 main

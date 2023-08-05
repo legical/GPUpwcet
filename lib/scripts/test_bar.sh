@@ -18,6 +18,7 @@ generate_some_output_and_sleep() {
 main() {
     for i in {1..99}
     do
+        del_this_line
         generate_some_output_and_sleep
         progress_bar $i 100
     done

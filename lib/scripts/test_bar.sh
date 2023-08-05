@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source progress bar
-source ./progress_bar.sh
+source ./tool.sh
 
 generate_some_output_and_sleep() {
     echo "Here is some output"
@@ -16,16 +16,11 @@ generate_some_output_and_sleep() {
 
 
 main() {
-    # Make sure that the progress bar is cleaned up when user presses ctrl+c
-    enable_trapping
-    # Create progress bar
-    setup_scroll_area
     for i in {1..99}
     do
         generate_some_output_and_sleep
-        draw_progress_bar $i 100
+        progress_bar $i 100
     done
-    destroy_scroll_area
 }
 
 main

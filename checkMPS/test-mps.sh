@@ -3,9 +3,9 @@
 source ~/.bashrc
 # 获取当前目录和主目录（上一级目录）
 proj_dir=$(pwd)
-root_dir=$proj_dir/..
+script_dir=$proj_dir/../lib/scripts
 
-source $root_dir/scripts/tool.sh
+source $script_dir/tool.sh
 
 check_GPU_Driver
 echo "--------------------- 测试 GPU$GPU_name 是否真的支持MPS ---------------------"
@@ -30,9 +30,9 @@ execution_time_a=$(echo "$end_time - $start_time" | bc)
 echo "未启用 MPS 的测试执行时间：$execution_time_a s"
 
 # 启用 MPS
-chmod +x $root_dir/scripts/mps/*.sh
+chmod +x $script_dir/mps/*.sh
 echo ""
-sudo $root_dir/scripts/mps/enable-mps.sh
+sudo $script_dir/mps/enable-mps.sh
 
 # 执行已启用 MPS 的测试
 cd $proj_dir
@@ -58,4 +58,4 @@ fi
 
 # 关闭 MPS
 echo ""
-sudo $root_dir/scripts/mps/disable-mps.sh
+sudo $script_dir/mps/disable-mps.sh
